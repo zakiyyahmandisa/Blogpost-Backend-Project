@@ -1,13 +1,19 @@
 const db = require('../db/db')
 
 
+const getUser = async(req,res) => {
+    try{
+
+    }
+    catch(err){
+
+    }
+}
+
 const createUser = async (req,res) =>{
     try{
-        const data = await db.none('INSERT INTO USERS (fname,username,password,profile_pic) VALUES($1,$2,$3,$4)', [
-            req.body.name,
-            req.body.username,
-            
-        ])
+        
+
     }
     catch(err){
 
@@ -15,5 +21,6 @@ const createUser = async (req,res) =>{
 }
 
 module.exports = {
+    getUser,
     createUser
 }
