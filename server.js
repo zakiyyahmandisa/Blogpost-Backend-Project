@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require("express");
-const pgPromise = require("pg-promise")()
+// const pgPromise = require("pgpromise")()
+
 
 const { getBlogs } = require('./controllers/blog')
 

@@ -1,6 +1,5 @@
 // Update with your config settings.
-
-const user = 'ebs'
+require('dotenv').config()
 
 module.exports = {
 
@@ -8,8 +7,8 @@ module.exports = {
     client: `postgresql`,
     connection: {
       database: 'blogtest',
-      user: `${user}`,
-      password: 'ebs'
+      user: process.env.USER,
+      password: process.env.PASSWORD
     }
   },
 
