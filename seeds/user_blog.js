@@ -3,7 +3,8 @@ const blogData = require('../json/blog')
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('blogposts').del()
+    .then(() =>knex('users').del())
     .then(() => {
       //
       return knex('users').insert(userData);

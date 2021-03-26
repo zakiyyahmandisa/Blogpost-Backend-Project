@@ -27,7 +27,7 @@ db.connect()
     .finally(() =>{
         if(sco){
             console.log('Db fully operational')
-            sco.done
+            sco.done()
         }
     })
 module.exports = db

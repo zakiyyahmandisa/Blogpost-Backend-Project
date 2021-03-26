@@ -1,1 +1,22 @@
 GET http://localhost:3000/blogs
+###
+PUT http://localhost:3000/blogs/revise/3
+Content-Type: application/json
+
+{
+    "post": "This is my UPDATED POST!!",
+    "user_id": 5
+}
+
+###
+POST http://localhost:3000/blogs
+Content-Type: application/json
+
+{
+    "post": "Added date search for efficient return",
+    "user_id": 5
+}
+
+###
+
+DELETE http://localhost:3000/blogs/4
