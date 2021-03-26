@@ -20,3 +20,11 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/blogs/4
+
+###
+POST http://localhost:3000/tags
+Content-Type: application/json
+
+{
+    "tagname":"dogs"
+}
