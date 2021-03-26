@@ -10,7 +10,7 @@ app.use(express.json())
 const PORT = process.env.PORT || 3000;
 
 app.get("/blogs", getBlog)
-app.post('/blogs',createBlog, checkTag)
+app.post('/blogs',createBlog)
 //id is blog id not user id
 app.put("/blogs/revise/:id", updateBlog)
 app.delete("/blogs/:id", deleteBlog)
