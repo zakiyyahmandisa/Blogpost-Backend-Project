@@ -3,8 +3,8 @@ const express = require("express");
 const cors = require('cors')
 const TagControl = require('./controllers/tags')
 const BlogControl = require('./controllers/blog')
-const { createUser, getUser} = require('./controllers/user')
-const { createComment, comments, updateComment} = require('./controllers/comments')
+const UserControl = require('./controllers/user')
+const CommentControl = require('./controllers/comments')
 
 const app = express()
 
@@ -30,7 +30,8 @@ const PORT = process.env.PORT || 3000;
 
 const blog = new BlogControl()
 const tag = new TagControl()
-
+const comment = new CommentControl()
+const user = new UserControl()
 
 app.get("/blogs", blog.getAllBlog)
 app.get("/blogs/:id/:offset", blog.getUserBlog)
@@ -43,16 +44,13 @@ app.post('/tags',tag.createTag)
 
 //creates a new blog post 
 //display all blog post 
-app.get("/users", getUser)
-app.post("/createuser", createUser)
-app.post("/create/comment/:post_id", createComment)
-app.get("/comments", comments)
+app.get("/users", user.getUser)
+app.post("/createuser", user.createUser)
+app.post("/create/comment/:post_id", comment.createComment)
+app.get("/comments", comment.comments)
 //takes comment id
-app.put("/update/comment/:id", updateComment)
+app.put("/update/comment/:id", comment.updateComment)
 
-
-//updates a blog post
-//deletes a blog post 
 
 
 

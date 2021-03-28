@@ -1,7 +1,11 @@
 const db = require('../db/db')
 
+class UserControl {
+    constructor(){
+
+    }
 //get all created users 
-const getUser = async(req,res) => {
+getUser = async(req,res) => {
     try{ 
         const users = await db.any(`SELECT * FROM users`)
         res.status(200).json(users)
@@ -12,7 +16,7 @@ const getUser = async(req,res) => {
     }
 }
 //create one user 
-const createUser = async (req,res) =>{
+createUser = async (req,res) =>{
     try{ 
         const user = await db.none ("INSERT INTO users (fname, username, password, profile_pic) VALUES (${fname}, ${username}, ${password}, ${profile_pic})" , req.body)
         const data = await db.one ("SELECT * FROM users WHERE username = ${username} AND password = ${password} ", req.body)
@@ -24,8 +28,5 @@ const createUser = async (req,res) =>{
 
     }
 }
-
-module.exports = {
-    getUser,
-    createUser
 }
+module.exports = UserControl

@@ -1,8 +1,11 @@
 const db = require('../db/db')
 
+class CommentControl {
+    constructor(){
 
+    }
 //create a comment 
-const createComment = async (req,res) => {
+createComment = async (req,res) => {
     try{ 
         await db.none ("INSERT INTO comments (content,post_id,user_id) VALUES ($1,$2,$3)", [req.body.content, req.params.post_id, req.body.user_id])
         const userComment = await db.one ("SELECT * FROM comments WHERE post_id=$1 AND content=$2", [req.params.post_id, req.body.content])
@@ -14,7 +17,7 @@ const createComment = async (req,res) => {
     }
 }
 //retrieve all comments 
-const comments = async(req,res) => {
+comments = async(req,res) => {
     try{ 
         const allComments = await db.any(`SELECT * FROM comments`)
         res.status(200).json(allComments)
@@ -25,7 +28,7 @@ const comments = async(req,res) => {
     }
 }
 //update a comment
-const updateComment = async (req,res) =>{
+updateComment = async (req,res) =>{
     try{ 
         const id2 = req.params.id
         console.log(req.body)
@@ -40,12 +43,8 @@ const updateComment = async (req,res) =>{
 
     }
 }
-
-
-
-
-module.exports = {
-    createComment,
-    comments,
-    updateComment
 }
+
+
+
+module.exports = CommentControl
