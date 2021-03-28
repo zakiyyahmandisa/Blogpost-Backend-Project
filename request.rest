@@ -32,3 +32,27 @@ Content-Type: application/json
 {
     "tagname":"dogs"
 }
+
+###
+
+POST http://localhost:3000/create/comment/3
+Content-Type: application/json
+
+{
+    "user_id": 7,
+    "content": "hmmmmm"
+}
+
+###
+
+GET http://localhost:3000/comments
+
+###
+PUT http://localhost:3000/update/comment/4
+Content-Type: application/json
+
+{
+    "post_id": 3,
+    "user_id": 7,
+    "content": "Im four"
+}

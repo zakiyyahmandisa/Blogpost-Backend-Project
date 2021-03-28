@@ -45,9 +45,10 @@ app.post('/tags',tag.createTag)
 //display all blog post 
 app.get("/users", getUser)
 app.post("/createuser", createUser)
-app.post("/createcomment", createComment)
+app.post("/create/comment/:post_id", createComment)
 app.get("/comments", comments)
-app.post("/updatecomment", updateComment)
+//takes comment id
+app.put("/update/comment/:id", updateComment)
 
 
 //updates a blog post

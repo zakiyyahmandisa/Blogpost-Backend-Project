@@ -4,11 +4,9 @@ const db = require('../db/db')
 //create a comment 
 const createComment = async (req,res) => {
     try{ 
-        const id = req.param.id
-    const userId = await db.none ("INSERT INTO comments SET content = $1 WHERE post_id = $2 AND user_id = $3 AND id = $4", [req.body.content, req.body.post_id, req.body.user_id, id])
-    const userComment = await db.one ("SELECT * FROM comments WHERE post_id = $1 AND user_id = $2 AND id = $3", [req.body.post_id, req.body.user_id, id])
-    res.status(200).json(userComment) 
-       
+        await db.none ("INSERT INTO comments (content,post_id,user_id) VALUES ($1,$2,$3)", [req.body.content, req.params.post_id, req.body.user_id])
+        const userComment = await db.one ("SELECT * FROM comments WHERE post_id=$1 AND content=$2", [req.params.post_id, req.body.content])
+        res.status(200).json(userComment) 
     }
     catch(err){
         res.status(500).send(err)
@@ -30,9 +28,10 @@ const comments = async(req,res) => {
 const updateComment = async (req,res) =>{
     try{ 
         const id2 = req.params.id
+        console.log(req.body)
 
-        await db.none ("UPDATE comments SET content = $1 WHERE post_id = $2 AND user_id = $3 AND id = $4" , [req.body.content, req.body.post_id, req.body.user_id, id2])
-        const update = await db.one ("SELECT * FROM comments WHERE post_id = $1 AND user_id = $2 AND id = $3 ", [req.body.post_id, req.body.user_id, id2])
+        await db.none ("UPDATE comments SET content = $1 WHERE user_id = $3 AND id = $4" , [req.body.content, req.body.post_id, req.body.user_id, id2])
+        const update = await db.one ("SELECT * FROM comments WHERE id = $1 ", id2)
         res.status(200).json(update) 
 
     }
