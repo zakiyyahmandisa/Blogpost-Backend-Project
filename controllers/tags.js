@@ -1,10 +1,16 @@
 const db = require('../db/db')
 
 
-class TagControl {
+class TagControlRelation {
     constructor(){
-
+    
     }
+
+    getTagList = async(req,res) => {
+        const list = await db.any('SELECT * FROM tags')
+        res.status(200).json(list)
+    }
+    
     checkTag = async(req,res) => {
         const tag = await db.one('SELECT * FROM tags WHERE tagname=$1', req.body.tagname)
         if(user){
@@ -32,4 +38,4 @@ class TagControl {
 //I think this is a tagblogpost thing
 
 
-module.exports = TagControl
+module.exports = TagControlRelation

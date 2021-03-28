@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require('cors')
 const TagControl = require('./controllers/tags')
 const BlogControl = require('./controllers/blog')
+const TagBlogRelation = require('./controllers/blogpost_tags')
 const { createUser, getUser} = require('./controllers/user')
 const { createComment, comments, updateComment} = require('./controllers/comments')
 
@@ -30,17 +31,26 @@ const PORT = process.env.PORT || 3000;
 
 const blog = new BlogControl()
 const tag = new TagControl()
+const tagBlog = new TagBlogRelation()
+
+app.route("/blogs")
+    .get(blog.getAllBlog)
+    .post(blog.createBlog)
 
 
-app.get("/blogs", blog.getAllBlog)
 app.get("/blogs/:id/:offset", blog.getUserBlog)
-app.post('/blogs',blog.createBlog)
 //id is blog id not user id
 app.put("/blogs/revise/:id", blog.updateBlog)
 app.delete("/blogs/:id", blog.deleteBlog)
 
-app.post('/tags',tag.createTag)
+app.route('/tags') 
+    .get(tag.getTagList)
+    .post(tag.createTag)
 
+app.route('/relation')
+    .get(tagBlog.getRelation)
+    .post(tagBlog.setRelation)
+    .delete(tagBlog.deleteRelation)
 //creates a new blog post 
 //display all blog post 
 app.get("/users", getUser)

@@ -56,3 +56,29 @@ Content-Type: application/json
     "user_id": 7,
     "content": "Im four"
 }
+
+###
+GET http://localhost:3000/tags
+
+###
+
+GET http://localhost:3000/relation
+
+###
+
+POST http://localhost:3000/relation
+Content-Type: application/json
+
+{
+    "post_id": 3,
+    "tag_id": 1
+}
+
+###
+DELETE  http://localhost:3000/relation
+Content-Type: application/json
+
+{
+    "post_id": 3,
+    "tag_id": 1
+}
