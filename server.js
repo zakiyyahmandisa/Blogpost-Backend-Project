@@ -3,7 +3,9 @@ const express = require("express");
 const cors = require('cors')
 const TagControl = require('./controllers/tags')
 const BlogControl = require('./controllers/blog')
-const { createUsers} = require('./controllers/user')
+const { createUser, getUser} = require('./controllers/user')
+const { createComment, comments, updateComment} = require('./controllers/comments')
+
 const app = express()
 
 
@@ -39,13 +41,17 @@ app.delete("/blogs/:id", blog.deleteBlog)
 
 app.post('/tags',tag.createTag)
 
-// app.post('/user', createUsers)
+//creates a new blog post 
+//display all blog post 
+app.get("/users", getUser)
+app.post("/createuser", createUser)
+app.post("/createcomment", createComment)
+app.get("/comments", comments)
+app.post("/updatecomment", updateComment)
 
-//flow
-    //create blog
-    //Check tags on blogs, if the exist finish check make connection on relation table
-    //if they dont exist make them and connect on relation table
 
+//updates a blog post
+//deletes a blog post 
 
 
 
