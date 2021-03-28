@@ -1,18 +1,37 @@
 require('dotenv').config()
 const express = require("express");
+const cors = require('cors')
 const TagControl = require('./controllers/tags')
 const BlogControl = require('./controllers/blog')
-const blog = new BlogControl()
-const tag = new TagControl()
-
 const { createUsers} = require('./controllers/user')
 const app = express()
 
+
+////Cors
+const whitelist = ["http://localhost:3001/"]
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(
+                new Error("Not allowed by CORS; origin domain needs to be added to whitelist.")
+            );
+        }
+    },
+};
+
+app.use(cors())
 app.use(express.json())
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/blogs", blog.getBlog)
+const blog = new BlogControl()
+const tag = new TagControl()
+
+
+app.get("/blogs", blog.getAllBlog)
+app.get("/blogs/:id/:offset", blog.getUserBlog)
 app.post('/blogs',blog.createBlog)
 //id is blog id not user id
 app.put("/blogs/revise/:id", blog.updateBlog)

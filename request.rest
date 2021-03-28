@@ -1,11 +1,14 @@
 GET http://localhost:3000/blogs
 ###
-PUT http://localhost:3000/blogs/revise/3
+GET http://localhost:3000/blogs/7/0
+###
+PUT http://localhost:3000/blogs/revise/24
 Content-Type: application/json
 
 {
-    "post": "This is my UPDATED POST!!",
-    "user_id": 5
+    "post": "$0 Sometimes I think the expectations of productivity thrust upon us is a way to keep us trapped $1",
+    "media": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/IF5ZXZWQWUI6RA6WFEP45LJKWE.jpg&w=1200,https://www.somethingwagging.com/wp-content/uploads/2013/08/medium_102798909.jpg",
+    "user_id": 7
 }
 
 ###
@@ -13,13 +16,14 @@ POST http://localhost:3000/blogs
 Content-Type: application/json
 
 {
-    "post": "Added date search for efficient return",
-    "user_id": 5
+    "post": "$0 Sometimes I think the expectations of productivity thrust upon us is a way to keep us trapped $1",
+    "media": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/IF5ZXZWQWUI6RA6WFEP45LJKWE.jpg&w=1200,https://www.somethingwagging.com/wp-content/uploads/2013/08/medium_102798909.jpg",
+    "user_id": 7
 }
 
 ###
 
-DELETE http://localhost:3000/blogs/4
+DELETE http://localhost:3000/blogs/20
 
 ###
 POST http://localhost:3000/tags
